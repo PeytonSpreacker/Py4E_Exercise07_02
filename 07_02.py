@@ -12,6 +12,13 @@ for line in fh:
         continue
     if line.startswith('X-DSPAM-Confidence:'):
         line.rstrip()
+        #print(line)
         count = count + 1
-        print(line)
-print('Done')
+        text = line.find(':')
+        num = line[text + 2:]
+        new = num.rstrip()
+        f = float(new)
+        confidence = confidence + f
+#print(count)
+#print(confidence)
+print('Average spam confidence:', confidence / count)
